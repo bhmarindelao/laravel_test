@@ -1,1 +1,35 @@
-Prueba de presentaciónd de películas
+Prueba de presentación de películas
+
+<table class="table table-light">
+
+    <thead class="thead-light">
+        <tr>
+            <th>#</th>
+            <th>Cartel</th>
+            <th>Nombre</th>
+            <th>Año</th>
+            <th>Género</th>
+            <th>Sinopsis</th>
+            <th>Protagoniza</th>
+            <th>Director</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach ($movies as $movie)
+
+        <tr>
+            <td>{{ $movie->id }}</td>
+            <td>{{ $movie->Photo }}</td>
+            <td>{{ $movie->Name }}</td>
+            <td>{{ $movie->Year }}</td>
+            <td>{{ $movie->Genre }}</td>
+            <td>{{ $movie->Description }}</td>
+            <td>{{ $movie->Featuring }}</td>
+            <td>{{ $movie->Director }}</td>
+            <td>Editar | Borrar</td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>

@@ -16,7 +16,8 @@ class MovieController extends Controller
     public function index()
     {
         //
-        return view('movie.index');
+        $datos['movies']=Movie::paginate(5); //Paginación base
+        return view('movie.index', $datos);
     }
 
     /**
@@ -38,9 +39,20 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        //Guardado de datos, excepto el token de seguridad
+        $datosMovie = request()->except('_token');
 
+        //Almacenamiento para Cartel
+        if($request->hasFile('Photo')){
+            $datosMovie['Photo']=$request->file('Photo')->store('uploads','public');
+        }
+
+
+        Movie::insert($datosMovie);
+        return response()->json($datosMovie);
+
+
+    }
     /**
      * Display the specified resource.
      *

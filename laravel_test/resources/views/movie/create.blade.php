@@ -1,7 +1,8 @@
 Formulario de creación
 
-<form action="" method="post" enctype="multipart/form-data">
-
+<form action="{{ url('/movie') }}" method="post" enctype="multipart/form-data">
+{{-- Generación de token de seguirdad --}}
+    @csrf
 <label for="Name">Nombre</label>
 <input type="text" name="Name">
 <br>
@@ -23,7 +24,7 @@ Formulario de creación
 <label for="Photo">Cartel</label>
 <input type="file" name="Photo">
 <br>
-<input type="submit" name="Save">
+<input type="submit" Value="Save">
 <br>
 
 </form>
