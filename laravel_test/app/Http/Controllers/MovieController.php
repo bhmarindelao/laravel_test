@@ -16,6 +16,7 @@ class MovieController extends Controller
     public function index()
     {
         //
+        return view('movie.index');
     }
 
     /**
@@ -26,6 +27,7 @@ class MovieController extends Controller
     public function create()
     {
         //
+        return view('movie.create');
     }
 
     /**
