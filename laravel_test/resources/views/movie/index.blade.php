@@ -28,7 +28,17 @@ Prueba de presentación de películas
             <td>{{ $movie->Description }}</td>
             <td>{{ $movie->Featuring }}</td>
             <td>{{ $movie->Director }}</td>
-            <td>Editar | Borrar</td>
+            <td>Editar |
+
+                <form action="{{ url('/empleado/'.$movie->id)}}" method="post">
+                    @csrf
+                    {{-- Generación y recepción del borrado --}}
+                    {{method_field('DELETE')}}
+                    <input type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
+
+                </form>
+
+            </td>
         </tr>
         @endforeach
     </tbody>
