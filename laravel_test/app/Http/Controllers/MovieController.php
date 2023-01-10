@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Movie;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MovieController extends Controller
 {
@@ -88,8 +89,18 @@ class MovieController extends Controller
     {
         //
         $datosMovie = request()->except(['_token','_method']);
-        Movie::where('id','=',$id)->update($datosMovie); //Si coincide la información, actualiza
 
+        if($request->hasFile('Photo')){
+            //Revisa si existe una foto almacenada
+            $movie=Movie::findOrFail($id);
+            //Si existe y desea actualizarse, borra la anterior
+            Storage::delete('public/'.$movie->Photo);
+            //Para guardar la nueva fotografía
+            $datosMovie['Photo']=$request->file('Photo')->store('uploads','public');
+        }
+
+        //Actualiza la base de datos
+        Movie::where('id','=',$id)->update($datosMovie);
         $movie=Movie::findOrFail($id); //Busca la información
         return view('movie.edit', compact('movie'));
     }
