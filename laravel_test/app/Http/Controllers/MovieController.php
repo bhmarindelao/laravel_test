@@ -40,6 +40,29 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
+
+        $campos=[
+            'Name'=>'required|string|max:100',
+            'Year'=>'required|max:4',
+            'Genre'=>'required|string|max:50',
+            'Description'=>'required|text',
+            'Featuring'=>'required|string|max:100',
+            'Director'=>'required|string|max:100',
+            'Photo'=>'required|max:10000|mimes:jpeg,png,jpg',
+        ];
+
+        $mensaje=[
+            'Name.required'=>'El nombre es requerido',
+            'Year.required'=>'El año es requerido',
+            'Genre.required'=>'El género es requerido (min:1)',
+            'Description.required'=>'La descripción es requerida',
+            'Featuring.required'=>'El o la protagonista es requerido (o requerida)',
+            'Director.required'=>'El director (o la directora) es requerido',
+            'Photo.required'=>'La foto es requerida'
+        ];
+
+        $this->validate($request, $campos, $mensaje);
+
         //Guardado de datos, excepto el token de seguridad
         $datosMovie = request()->except('_token');
 
