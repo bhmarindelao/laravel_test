@@ -1,5 +1,6 @@
 Prueba de presentación de películas
 
+<a href="{{ url('movie/create') }}">Registrar nueva película</a>
 <table class="table table-light">
 
     <thead class="thead-light">
@@ -39,7 +40,7 @@ Prueba de presentación de películas
                 </a>
                 |
 
-                <form action="{{ url('/empleado/'.$movie->id)}}" method="post">
+                <form action="{{ url('/movie/'.$movie->id)}}" method="post">
                     @csrf
                     {{-- Generación y recepción del borrado --}}
                     {{method_field('DELETE')}}

@@ -24,3 +24,5 @@
 <input type="file" name="Photo" value="" id="Photo">
 <br>
 <input type="submit" Value="Save">
+
+<a href="{{ url('movie/') }}">Regresar</a>

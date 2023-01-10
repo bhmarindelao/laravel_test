@@ -85,7 +85,7 @@ class MovieController extends Controller
      * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Movie $movie)
+    public function update(Request $request, $id)
     {
         //
         $datosMovie = request()->except(['_token','_method']);
@@ -114,7 +114,14 @@ class MovieController extends Controller
     public function destroy($id)
     {
         //Borrar registro de película
-        Movie::destroy($id);
+
+        $movie=Movie::findOrFail($id);
+        //Pregunta para borrar la foto asociada
+        if(Storage::delete('public/'.$movie->Photo)){
+            //Si borra la imagen, elimina el resto de data
+            Movie::destroy($id);
+        }
+
         return redirect('movie');
     }
 }
