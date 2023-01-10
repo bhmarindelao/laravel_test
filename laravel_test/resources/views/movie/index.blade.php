@@ -1,4 +1,6 @@
-Prueba de presentación de películas
+@if(Session::has('mensaje'))
+{{ Session::get('mensaje') }}
+@endif
 
 <a href="{{ url('movie/create') }}">Registrar nueva película</a>
 <table class="table table-light">

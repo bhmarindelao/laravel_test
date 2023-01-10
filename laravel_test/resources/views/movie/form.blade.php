@@ -1,3 +1,4 @@
+<h1> {{ $modo }} película</h1>
 <label for="Name">Nombre</label>
 <input type="text" name="Name" value="{{ isset($movie->Name)?$movie->Name:'' }}" id="Name">
 <br>
@@ -23,6 +24,6 @@
 @endif
 <input type="file" name="Photo" value="" id="Photo">
 <br>
-<input type="submit" Value="Save">
+<input type="submit" Value="{{$modo}} película">
 
 <a href="{{ url('movie/') }}">Regresar</a>

@@ -50,8 +50,7 @@ class MovieController extends Controller
 
 
         Movie::insert($datosMovie);
-        return response()->json($datosMovie);
-
+        return redirect('movie')->with('mensaje','Película añadida con éxito');
 
     }
     /**
@@ -122,6 +121,6 @@ class MovieController extends Controller
             Movie::destroy($id);
         }
 
-        return redirect('movie');
+        return redirect('movie')->with('mensaje','Película borrada');
     }
 }

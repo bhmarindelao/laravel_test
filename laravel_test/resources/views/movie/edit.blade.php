@@ -3,6 +3,6 @@
     @csrf
     {{ method_field('PATCH') }}
 
-    @include('movie.form');
+    @include('movie.form', ['modo'=>'Editar']);
 
 </form>
