@@ -45,7 +45,7 @@ class MovieController extends Controller
             'Name'=>'required|string|max:100',
             'Year'=>'required|max:4',
             'Genre'=>'required|string|max:50',
-            'Description'=>'required|text',
+            'Description'=>'required|string|max:100000',
             'Featuring'=>'required|string|max:100',
             'Director'=>'required|string|max:100',
             'Photo'=>'required|max:10000|mimes:jpeg,png,jpg',
@@ -114,7 +114,7 @@ class MovieController extends Controller
             'Name'=>'required|string|max:100',
             'Year'=>'required|max:4',
             'Genre'=>'required|string|max:50',
-            'Description'=>'required|text',
+            'Description'=>'required|string|max:100000',
             'Featuring'=>'required|string|max:100',
             'Director'=>'required|string|max:100',
 
@@ -151,7 +151,7 @@ class MovieController extends Controller
         //Actualiza la base de datos
         Movie::where('id','=',$id)->update($datosMovie);
         $movie=Movie::findOrFail($id); //Busca la información
-        return view('movie.edit', compact('movie'));
+        return redirect('movie')->with('mensaje','Película modificada');
     }
 
     /**

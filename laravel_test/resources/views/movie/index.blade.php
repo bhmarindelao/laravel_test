@@ -2,9 +2,15 @@
 
 @section('content')
 <div class="container">
-@if(Session::has('mensaje'))
-{{ Session::get('mensaje') }}
-@endif
+    @if(Session::has('mensaje'))
+   <div class="alert alert-success alert-dismissible fade show" role="alert">
+       {{ Session::get('mensaje') }}
+
+       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
 
 <a href="{{ url('movie/create') }}" class="btn btn-success">Registrar nueva película</a>
 <br>
@@ -61,5 +67,6 @@
         @endforeach
     </tbody>
 </table>
+{!! $movies->links() !!}
 </div>
 @endsection
