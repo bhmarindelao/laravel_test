@@ -1,2 +1,2 @@
 # laravel_test
- Prueba de conocimiento para DevTech en Laravel 8
+ Prueba de conocimiento para DevTech en Laravel 9
