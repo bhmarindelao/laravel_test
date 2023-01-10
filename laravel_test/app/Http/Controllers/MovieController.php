@@ -70,9 +70,11 @@ class MovieController extends Controller
      * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function edit(Movie $movie)
+    public function edit($id)
     {
         //
+        $movie=Movie::findOrFail($id);
+        return view('movie.edit', compact('movie'));
     }
 
     /**
@@ -85,6 +87,11 @@ class MovieController extends Controller
     public function update(Request $request, Movie $movie)
     {
         //
+        $datosMovie = request()->except(['_token','_method']);
+        Movie::where('id','=',$id)->update($datosMovie); //Si coincide la información, actualiza
+
+        $movie=Movie::findOrFail($id); //Busca la información
+        return view('movie.edit', compact('movie'));
     }
 
     /**
@@ -93,8 +100,10 @@ class MovieController extends Controller
      * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Movie $movie)
+    public function destroy($id)
     {
-        //
+        //Borrar registro de película
+        Movie::destroy($id);
+        return redirect('movie');
     }
 }
