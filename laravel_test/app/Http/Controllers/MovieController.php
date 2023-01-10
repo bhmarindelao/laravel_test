@@ -109,6 +109,33 @@ class MovieController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //Para actualizar, borra los campos y pinta los nuevos
+        $campos=[
+            'Name'=>'required|string|max:100',
+            'Year'=>'required|max:4',
+            'Genre'=>'required|string|max:50',
+            'Description'=>'required|text',
+            'Featuring'=>'required|string|max:100',
+            'Director'=>'required|string|max:100',
+
+        ];
+
+        $mensaje=[
+            'Name.required'=>'El nombre es requerido',
+            'Year.required'=>'El año es requerido',
+            'Genre.required'=>'El género es requerido (min:1)',
+            'Description.required'=>'La descripción es requerida',
+            'Featuring.required'=>'El o la protagonista es requerido (o requerida)',
+            'Director.required'=>'El director (o la directora) es requerido',
+
+        ];
+        //Para el cartel, pregunta si existe la foto, y después del borrado, debe pintar un nuevo cartel
+        if($request->hasFile('Photo')){
+            $campos=['Photo'=>'required|max:10000|mimes:jpeg,png,jpg'];
+            $mensaje=['Photo.required'=>'La foto es requerida'];
+        }
+
+        $this->validate($request, $campos, $mensaje);
         //
         $datosMovie = request()->except(['_token','_method']);
 
