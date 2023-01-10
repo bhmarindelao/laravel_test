@@ -21,14 +21,23 @@ Prueba de presentación de películas
 
         <tr>
             <td>{{ $movie->id }}</td>
-            <td>{{ $movie->Photo }}</td>
+
+            <td>
+                {{-- Accede al storage y muestra la imagen --}}
+                <img src="{{ asset('storage').'/'.$movie->Photo }}" alt="">
+            </td>
             <td>{{ $movie->Name }}</td>
             <td>{{ $movie->Year }}</td>
             <td>{{ $movie->Genre }}</td>
             <td>{{ $movie->Description }}</td>
             <td>{{ $movie->Featuring }}</td>
             <td>{{ $movie->Director }}</td>
-            <td>Editar |
+            <td>
+
+                <a href="{{url('/movie/'.$movie->id.'/edit')}}">
+                    Editar
+                </a>
+                |
 
                 <form action="{{ url('/empleado/'.$movie->id)}}" method="post">
                     @csrf
