@@ -15,12 +15,15 @@ use App\Http\Controllers\MovieController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 //Ruta para acceder a los componentes de las películas
 Route::resource('movie', MovieController::class);
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [MovieController::class, 'index'])->name('home');
+
+Route::group(['middleware'=>'auth'],function(){
+    Route::get('/', [MovieController::class, 'index'])->name('home');
+});
