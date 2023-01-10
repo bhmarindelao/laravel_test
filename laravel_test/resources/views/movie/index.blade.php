@@ -6,7 +6,9 @@
 {{ Session::get('mensaje') }}
 @endif
 
-<a href="{{ url('movie/create') }}">Registrar nueva película</a>
+<a href="{{ url('movie/create') }}" class="btn btn-success">Registrar nueva película</a>
+<br>
+<br>
 <table class="table table-light">
 
     <thead class="thead-light">
@@ -31,7 +33,7 @@
 
             <td>
                 {{-- Accede al storage y muestra la imagen --}}
-                <img src="{{ asset('storage').'/'.$movie->Photo }}" width="200" alt="">
+                <img class="img-thumbnail img-fluid" src="{{ asset('storage').'/'.$movie->Photo }}" width="200" alt="">
             </td>
             <td>{{ $movie->Name }}</td>
             <td>{{ $movie->Year }}</td>
@@ -41,16 +43,16 @@
             <td>{{ $movie->Director }}</td>
             <td>
 
-                <a href="{{url('/movie/'.$movie->id.'/edit')}}">
+                <a href="{{url('/movie/'.$movie->id.'/edit')}}" class="btn btn-warning">
                     Editar
                 </a>
                 |
 
-                <form action="{{ url('/movie/'.$movie->id)}}" method="post">
+                <form action="{{ url('/movie/'.$movie->id)}}" class="d-inline" method="post">
                     @csrf
                     {{-- Generación y recepción del borrado --}}
                     {{method_field('DELETE')}}
-                    <input type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
+                    <input class="btn btn-danger" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
 
                 </form>
 

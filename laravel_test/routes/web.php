@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 //Ruta para acceder a los componentes de las películas
-Route::resource('movie', MovieController::class);
+Route::resource('movie', MovieController::class)->middleware('auth');
 Auth::routes();
 
 Route::get('/home', [MovieController::class, 'index'])->name('home');
