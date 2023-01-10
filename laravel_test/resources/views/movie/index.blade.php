@@ -24,7 +24,7 @@ Prueba de presentación de películas
 
             <td>
                 {{-- Accede al storage y muestra la imagen --}}
-                <img src="{{ asset('storage').'/'.$movie->Photo }}" alt="">
+                <img src="{{ asset('storage').'/'.$movie->Photo }}" width="200" alt="">
             </td>
             <td>{{ $movie->Name }}</td>
             <td>{{ $movie->Year }}</td>
